@@ -1,5 +1,5 @@
 import axios from "axios"
-import { APP_KEY, BASE_URL } from "../config/api_config"
+import { API_KEY, BASE_URL } from "../config/api_config"
 
 export const getItems = async (itemName) => {
   const url = BASE_URL
@@ -7,7 +7,7 @@ export const getItems = async (itemName) => {
   try {
     const response = await axios.get(url, {
       params: {
-        app_key: APP_KEY,
+        api_key: API_KEY,
       },
     })
     console.log(response)

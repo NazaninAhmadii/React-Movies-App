@@ -33,10 +33,19 @@ class TabContentContainer extends Component {
     )
   }
 
+  handleInputChange = (searchQuery) => {
+    this.setState({
+      searchQuery,
+    })
+  }
+
   render() {
     return (
       <div>
-        <SearchForm />
+        <SearchForm
+          onInputChange={this.handleInputChange}
+          onSubmit={this.fetchItems}
+        />
       </div>
     )
   }
