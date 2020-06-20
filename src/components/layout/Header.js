@@ -5,10 +5,10 @@ import { Container } from "@material-ui/core"
 
 const getStyles = makeStyles((theme) => ({
   root: {
-    background: "linear-gradient(45deg, #2899f3 30%, #f32887 90%)",
+    background: "linear-gradient(45deg, #017eff 30%, #01e8f8 90%)",
     border: 0,
     borderRadius: 3,
-    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    boxShadow: "0 3px 5px 2px rgba(245, 245, 245, .3)",
     color: "white",
     height: 120,
     padding: "0 30px",
@@ -25,7 +25,7 @@ const getStyles = makeStyles((theme) => ({
   },
 }))
 
-const SearchHeader = () => {
+const TopHeader = () => {
   const classes = getStyles()
   return (
     <Container>
@@ -36,4 +36,4 @@ const SearchHeader = () => {
   )
 }
 
-export default SearchHeader
+export default TopHeader

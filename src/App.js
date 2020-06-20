@@ -2,14 +2,15 @@ import React from "react"
 import "./App.css"
 
 import Container from "@material-ui/core/Container"
-import SearchHeader from "./components/layout/Header"
-import TabScreen from "./components/screens/TabScreen"
+import Header from "./components/layout/Header"
+import ContentContainer from "./components/containers/ContentContainer"
 
 function App() {
   return (
     <Container fixed>
-      <SearchHeader />
-      <TabScreen />
+      <Header />
+
+      <ContentContainer />
     </Container>
   )
 }

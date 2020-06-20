@@ -1,7 +1,7 @@
 import React from "react"
 
-const TabContent = () => {
-  return <div></div>
+const TabContent = (props) => {
+  return <h1>Tab Content</h1>
 }
 
 export default TabContent

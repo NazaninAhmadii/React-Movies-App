@@ -1,10 +1,11 @@
 import React, { Component } from "react"
-import SearchForm from "../forms/SearchForm"
 import getItems from "../../service/api"
+import TabContent from "../tabs/TabContent"
+
+import { Container } from "@material-ui/core"
 
 class TabContentContainer extends Component {
   state = {
-    searchQuery: "",
     itemData: {},
     items: [],
     isLoading: false,
@@ -33,20 +34,11 @@ class TabContentContainer extends Component {
     )
   }
 
-  handleInputChange = (searchQuery) => {
-    this.setState({
-      searchQuery,
-    })
-  }
-
   render() {
     return (
-      <div>
-        <SearchForm
-          onInputChange={this.handleInputChange}
-          onSubmit={this.fetchItems}
-        />
-      </div>
+      <Container>
+        <TabContent />
+      </Container>
     )
   }
 }

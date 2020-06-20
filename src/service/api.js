@@ -10,7 +10,7 @@ export const getItems = async (itemName) => {
         api_key: API_KEY,
       },
     })
-    console.log(response)
+    // console.log(response)
 
     const items = response.data
     return items
