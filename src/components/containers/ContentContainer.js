@@ -3,11 +3,14 @@ import React, { Component } from "react"
 import SearchForm from "../forms/SearchForm"
 import TabScreen from "../screens/TabScreen"
 import { Container } from "@material-ui/core"
+import searchItems from "../../service/searchapi"
 
 class ContentContainer extends Component {
   state = {
+    searchItems: [],
+    isLoading: false,
     searchQuery: "",
-    searchType: 10,
+    searchType: "multi",
     searchInitiated: false,
     searchText: "Please Enter a SEARCH",
   }
@@ -15,7 +18,7 @@ class ContentContainer extends Component {
   handleInputChange = (searchQuery) => {
     this.setState({
       searchQuery,
-      searchText: "Please initiate the SEARCH",
+      searchText: "Please initiate the SEARCH ...",
     })
     if (searchQuery.length === 0) {
       this.setState({
@@ -25,9 +28,9 @@ class ContentContainer extends Component {
     }
   }
 
-  onSelectChange = (searchType) => {
+  onSelectChange = async (searchType) => {
     console.log(searchType)
-    this.setState({
+    await this.setState({
       searchType,
     })
   }
@@ -45,10 +48,35 @@ class ContentContainer extends Component {
     }
     console.log("Search Type: ", searchType)
     console.log("Search initiated: ", searchInitiated)
+    const searchUrl = "search/" + searchType
+    searchItems(searchUrl, searchQuery).then(
+      (searchItems) => {
+        console.log(searchItems)
+        this.setState({
+          searchItems,
+          isLoading: false,
+        })
+        if (searchItems.length === 0) {
+          this.setState({
+            searchText: "Sorry, there were no results",
+          })
+        }
+      },
+      (error) => {
+        console.log("Error ", `Something went wrong! ${error}`)
+      }
+    )
   }
 
   render() {
-    const { searchQuery, searchType, searchInitiated, searchText } = this.state
+    const {
+      searchQuery,
+      searchType,
+      searchInitiated,
+      searchText,
+      searchItems,
+      isLoading,
+    } = this.state
     return (
       <Container>
         <SearchForm
@@ -61,6 +89,8 @@ class ContentContainer extends Component {
           searchType={searchType}
           searchInitiated={searchInitiated}
           searchText={searchText}
+          searchItems={searchItems}
+          isLoading={isLoading}
         />
       </Container>
     )

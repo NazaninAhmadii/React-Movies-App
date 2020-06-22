@@ -2,8 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { makeStyles } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
-// import SelectBox from "../layout/SelectBox"
 import TabContentContainer from "../containers/TabContentContainer"
+import TabContent from "../tabs/TabContent"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,16 +29,10 @@ function TabPanel(props) {
     searchText,
     searchQuery,
     searchType,
+    searchItems,
+    isLoading,
     ...other
   } = props
-  // const movieCategory = ["popular", "now_playing", "top_rated", "upcoming"]
-  // const tvShowCategory = ["popular", "top_rated", "airing_today", "on_the_air"]
-  // let selectedCategory
-
-  // const onSelectChange = (e) => {
-  //   selectedCategory = e
-  //   console.log(selectedCategory)
-  // }
 
   return (
     <div
@@ -56,7 +50,7 @@ function TabPanel(props) {
       {value === 1 && (
         <Box p={3} className={classes.box}>
           <h1>{props.searchText}</h1>
-          <TabContentContainer source={searchType} />
+          <TabContent items={props.searchItems} isLoading={props.isLoading} />
         </Box>
       )}
       {value === 2 && (

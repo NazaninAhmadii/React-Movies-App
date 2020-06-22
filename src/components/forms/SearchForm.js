@@ -59,13 +59,13 @@ const SearchForm = (props) => {
             id: "outlined-age-native-simple",
           }}
         >
-          <option key="10" value="10">
+          <option key="10" value="multi">
             Multi
           </option>
-          <option key="20" value="20">
+          <option key="20" value="movie">
             Movies
           </option>
-          <option key="30" value="30">
+          <option key="30" value="tv">
             TV_Shows
           </option>
         </Select>

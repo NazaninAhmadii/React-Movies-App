@@ -46,29 +46,7 @@ class TabContentContainer extends Component {
         })
       },
       (error) => {
-        alert("Error ", `Something went wrong! ${error}`)
-      }
-    )
-  }
-
-  searchItems = (e) => {
-    const { searchQuery } = this.state
-    e.preventDefault()
-
-    this.setState({
-      isLoading: true,
-    })
-
-    getItems(searchQuery).then(
-      (items) => {
-        console.log(items)
-        this.setState({
-          items,
-          isLoading: false,
-        })
-      },
-      (error) => {
-        alert("Error ", `Something went wrong! ${error}`)
+        console.log("Error ", `Something went wrong! ${error}`)
       }
     )
   }

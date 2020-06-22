@@ -67,6 +67,8 @@ function TabScreen(props) {
         searchType={props.searchType}
         searchText={props.searchText}
         searchInitiated={props.searchInitiated}
+        searchItems={props.searchItems}
+        isLoading={props.isLoading}
       ></TabPanel>
     </div>
   )
