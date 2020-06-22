@@ -1,2 +1,2 @@
 export const API_KEY = "a273cdc8ac770015c3619de02a0c369a"
-export const BASE_URL = "https://api.themoviedb.org/3/movie/popular"
+export const BASE_URL = "https://api.themoviedb.org/3"

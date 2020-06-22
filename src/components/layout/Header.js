@@ -5,7 +5,7 @@ import { Container } from "@material-ui/core"
 
 const getStyles = makeStyles((theme) => ({
   root: {
-    background: "linear-gradient(45deg, #017eff 30%, #01e8f8 90%)",
+    background: "linear-gradient(180deg, #017eff 30%, #01e8f8 90%)",
     border: 0,
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px rgba(245, 245, 245, .3)",

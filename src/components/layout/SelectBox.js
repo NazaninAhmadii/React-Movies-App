@@ -6,9 +6,15 @@ import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   formControl: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(3),
     minWidth: 120,
+    alignItems: "center",
+    justifyContent: "center",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -27,7 +33,7 @@ export default function SelectBox(props) {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel htmlFor="outlined-age-native-simple">Category</InputLabel>
         <Select
