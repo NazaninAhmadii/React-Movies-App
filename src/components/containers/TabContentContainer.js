@@ -38,7 +38,12 @@ class TabContentContainer extends Component {
     // console.log("the element selected: ", category)
     await this.setState({
       category,
+      totalPage: 1,
+      page: 1,
       currentPage: 1,
+      indexOfLastItem: 10,
+      indexOfFirstItem: 0,
+      itemPerPage: 10,
     })
     this.fetchItems(currentPage)
   }
