@@ -8,13 +8,9 @@ import TabContent from "../tabs/TabContent"
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
   box: {
     width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
     textAlign: "center",
   },
 }))

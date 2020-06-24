@@ -8,10 +8,11 @@ import ButtonBase from "@material-ui/core/ButtonBase"
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    margin: theme.spacing(2),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     margin: "auto",
     width: "100%",
   },
@@ -21,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
   },
   img: {
-    margin: "auto",
+    // margin: "auto",
     display: "block",
     maxWidth: "100%",
     maxHeight: "100%",
-    position: "absolute",
-    left: "50%",
-    transform: "translate(-50%)",
+    // position: "absolute",
+    // left: "50%",
+    // transform: "translate(-50%)",
   },
 }))
 
@@ -37,7 +38,7 @@ function Item(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} key={id}>
-        <Grid container spacing={2}>
+        <Grid container>
           <Grid item>
             <ButtonBase className={classes.image}>
               <img className={classes.img} alt="complex" src={imageUrl} />

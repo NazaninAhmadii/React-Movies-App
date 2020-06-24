@@ -10,24 +10,20 @@ const TabContent = (props) => {
 
   const renderItems = () => {
     return (
-      <div className="container">
-        <Container>
-          {items.map((element) => {
-            return (
-              <Item
-                key={element.id}
-                id={element.id}
-                title={element.title ? element.title : element.name}
-                imageUrl={
-                  "http://image.tmdb.org/t/p/w500" + element.poster_path
-                }
-                popularity={element.popularity}
-                releasedDate={element.release_date}
-                overview={element.overview}
-              />
-            )
-          })}
-        </Container>
+      <div>
+        {items.map((element) => {
+          return (
+            <Item
+              key={element.id}
+              id={element.id}
+              title={element.title ? element.title : element.name}
+              imageUrl={"http://image.tmdb.org/t/p/w500" + element.poster_path}
+              popularity={element.popularity}
+              releasedDate={element.release_date}
+              overview={element.overview}
+            />
+          )
+        })}
       </div>
     )
   }

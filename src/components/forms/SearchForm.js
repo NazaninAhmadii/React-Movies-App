@@ -15,6 +15,7 @@ const getStyles = makeStyles((theme) => ({
   },
   form: {
     display: "flex",
+    flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
     marginTop: theme.spacing(4),
