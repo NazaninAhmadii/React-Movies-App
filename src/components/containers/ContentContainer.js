@@ -5,8 +5,6 @@ import TabScreen from "../screens/TabScreen"
 import { Container } from "@material-ui/core"
 import searchItems from "../../service/searchapi"
 
-// import BasicPagination from "../layout/Pagination"
-
 class ContentContainer extends Component {
   state = {
     searchItems: [],
@@ -37,7 +35,7 @@ class ContentContainer extends Component {
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e, page) => {
     const { searchQuery, searchType, searchInitiated } = this.state
     e.preventDefault()
 
@@ -55,7 +53,7 @@ class ContentContainer extends Component {
       (searchItems) => {
         console.log(searchItems)
         this.setState({
-          searchItems,
+          searchItems: searchItems.results,
           isLoading: false,
         })
         if (searchItems.length === 0) {
@@ -76,16 +74,9 @@ class ContentContainer extends Component {
       searchType,
       searchInitiated,
       searchText,
-      searchItems,
       isLoading,
+      searchItems,
     } = this.state
-
-    //add pagination
-    const currentPage = 1
-    const itemPerPage = 10
-    const indexOfLastItem = currentPage * itemPerPage
-    const indexOfFirstItem = indexOfLastItem - itemPerPage
-    const currentItems = searchItems.slice(indexOfFirstItem, indexOfLastItem)
 
     return (
       <Container>
@@ -99,7 +90,7 @@ class ContentContainer extends Component {
           searchType={searchType}
           searchInitiated={searchInitiated}
           searchText={searchText}
-          searchItems={currentItems}
+          searchItems={searchItems}
           isLoading={isLoading}
         />
       </Container>

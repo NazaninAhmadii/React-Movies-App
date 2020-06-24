@@ -1,7 +1,7 @@
 import axios from "axios"
 import { API_KEY, BASE_URL } from "../config/api_config"
 
-const searchItems = async (searchUrl, query) => {
+const searchItems = async (searchUrl, query, page) => {
   const url = BASE_URL + "/" + searchUrl
   console.log(url)
   try {
@@ -9,10 +9,11 @@ const searchItems = async (searchUrl, query) => {
       params: {
         api_key: API_KEY,
         query,
+        page,
       },
     })
 
-    const items = response.data.results
+    const items = response.data
 
     return items
   } catch (err) {
