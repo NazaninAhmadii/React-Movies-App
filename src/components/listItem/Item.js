@@ -18,12 +18,16 @@ const useStyles = makeStyles((theme) => ({
   image: {
     width: 200,
     height: 280,
+    position: "relative",
   },
   img: {
     margin: "auto",
     display: "block",
     maxWidth: "100%",
     maxHeight: "100%",
+    position: "absolute",
+    left: "50%",
+    transform: "translate(-50%)",
   },
 }))
 

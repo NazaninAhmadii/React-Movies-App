@@ -5,6 +5,8 @@ import TabScreen from "../screens/TabScreen"
 import { Container } from "@material-ui/core"
 import searchItems from "../../service/searchapi"
 
+// import BasicPagination from "../layout/Pagination"
+
 class ContentContainer extends Component {
   state = {
     searchItems: [],
@@ -77,6 +79,14 @@ class ContentContainer extends Component {
       searchItems,
       isLoading,
     } = this.state
+
+    //add pagination
+    const currentPage = 1
+    const itemPerPage = 10
+    const indexOfLastItem = currentPage * itemPerPage
+    const indexOfFirstItem = indexOfLastItem - itemPerPage
+    const currentItems = searchItems.slice(indexOfFirstItem, indexOfLastItem)
+
     return (
       <Container>
         <SearchForm
@@ -89,7 +99,7 @@ class ContentContainer extends Component {
           searchType={searchType}
           searchInitiated={searchInitiated}
           searchText={searchText}
-          searchItems={searchItems}
+          searchItems={currentItems}
           isLoading={isLoading}
         />
       </Container>

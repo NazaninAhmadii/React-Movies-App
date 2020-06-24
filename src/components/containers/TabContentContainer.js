@@ -4,8 +4,11 @@ import TabContent from "../tabs/TabContent"
 import SelectBox from "../layout/SelectBox"
 import { Container } from "@material-ui/core"
 
+import BasicPagination from "../layout/Pagination"
+
 const movieCategory = ["popular", "now_playing", "top_rated", "upcoming"]
 const tvShowCategory = ["popular", "top_rated", "airing_today", "on_the_air"]
+
 class TabContentContainer extends Component {
   state = {
     items: [],
@@ -14,35 +17,47 @@ class TabContentContainer extends Component {
     searchQuery: this.props.searchQuery,
     searchType: this.props.searchType || "multi",
     category: "popular",
+    totalPage: 1,
+    page: 1,
+    currentPage: 1,
+    indexOfLastItem: 10,
+    indexOfFirstItem: 0,
+    itemPerPage: 10,
+    currentItems: [],
   }
 
   componentDidMount() {
-    const { source, category } = this.state
-    console.log(source, category)
-    this.fetchItems()
+    const { page } = this.state
+
+    // console.log(source, category)
+    this.fetchItems(page)
   }
 
   onSelectChange = async (category) => {
-    console.log("the element selected: ", category)
+    const { currentPage } = this.state
+    // console.log("the element selected: ", category)
     await this.setState({
       category,
+      currentPage: 1,
     })
-    this.fetchItems()
+    this.fetchItems(currentPage)
   }
 
-  fetchItems = () => {
-    const { category, source } = this.state
+  fetchItems = (page) => {
+    const { category, source, indexOfFirstItem, indexOfLastItem } = this.state
     const sourceUrl = source + "/" + category
     this.setState({
       isLoading: true,
     })
-    console.log("Movie Category: ", sourceUrl)
-    getItems(sourceUrl).then(
+    // console.log("Movie Category: ", sourceUrl)
+    getItems(sourceUrl, page).then(
       (items) => {
-        // console.log(items)
+        // console.log("totalPage : ", items.total_pages)
         this.setState({
-          items,
+          items: items.results,
           isLoading: false,
+          totalPage: Math.floor(items.total_pages * 2),
+          currentItems: items.results.slice(indexOfFirstItem, indexOfLastItem),
         })
       },
       (error) => {
@@ -52,7 +67,32 @@ class TabContentContainer extends Component {
   }
 
   render() {
-    const { items, isLoading, source } = this.state
+    const {
+      items,
+      isLoading,
+      source,
+      totalPage,
+      currentItems,
+      itemPerPage,
+    } = this.state
+
+    //add pagination
+    // console.log("totalPage : ", totalPage)
+    const paginate = async (currPage) => {
+      await this.setState({
+        page: Math.ceil(currPage / 2),
+        currentPage: currPage,
+        indexOfLastItem: currPage % 2 === 1 ? 10 : 20,
+        indexOfFirstItem: currPage % 2 === 1 ? 0 : 10,
+        currentItems: items.slice(
+          currPage % 2 === 1 ? 10 : 20,
+          currPage % 2 === 1 ? 0 : 10
+        ),
+      })
+
+      this.fetchItems(Math.ceil(currPage / 2))
+    }
+
     return (
       <Container>
         {source === "movie" ? (
@@ -67,7 +107,12 @@ class TabContentContainer extends Component {
             onSelectChange={this.onSelectChange}
           />
         ) : null}
-        <TabContent items={items} isLoading={isLoading} />
+        <TabContent items={currentItems} isLoading={isLoading} />
+        <BasicPagination
+          itemsPerPage={itemPerPage}
+          totalItems={totalPage}
+          paginate={paginate}
+        />
       </Container>
     )
   }
